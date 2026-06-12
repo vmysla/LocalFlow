@@ -1,0 +1,37 @@
+# Changelog
+
+All notable changes to this project are recorded here.
+Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
+Newest entries appear at the top.
+
+## [Unreleased]
+
+### Updated
+
+- 2026-05-14 — `linkedin/drafts/2026-05-14-1024-wispr-moat-152-lines.md` hook revised from "I replaced a $144/year app in 108 minutes." → "I replaced a $144/year app in <2 hours." per user request. Unicode-bold preserved on "$144/year" and now on "<2 hours" (was on "108 minutes"). `char_count` 778 → 775; `angle` frontmatter updated to match. Rationale: user preferred the rougher, "back-of-napkin" feel of `<2 hours` over the precision of `108 minutes` — opens with vibe, lets the article deliver the 108-minute receipt.
+
+### Added
+
+- 2026-05-14 — `linkedin/drafts/2026-05-14-1024-wispr-moat-152-lines.md`: short (≤800 char) LinkedIn post drafted from `articles/wispr-flow-killer.md` for Vlad Mysla's personal profile. Bold/contrarian hook (originally "I replaced a $144/year app in 108 minutes." — see Updated above for current wording), one-line payoff ("The moat was never the model."), dual CTA linking the article (GitHub blob path) and the LocalFlow repo. Unicode-bold applied to hook numerals and payoff line per `formatting.md`. Status: `draft` — not posted.
+- 2026-05-14 — `linkedin/config/` bootstrapped with 8 files (`company.md`, `audience.md`, `voice.md`, `topics.md`, `hooks.md`, `ctas.md`, `formatting.md`, `snippets.md`) for the `write-linkedin-post` skill. Values inferred from `articles/wispr-flow-killer.md` (voice, topic pillars) plus a 4-question quickstart (profile = personal, audience = mixed builder+founder, length = short, CTA = article+repo) instead of the skill's full 16-question onboarding. Config files are user-editable; future runs of the skill will pick up changes.
+- 2026-05-14 — `articles/wispr-flow-killer.md`: long-form Substack/Medium article framing LocalFlow as a 108-minute open replacement for Wispr Flow. Covers the 5-monitor agent-orchestration workflow that motivated the build, a minute-by-minute audit trail from git, a competitive pricing table, Wispr Flow's 11-subprocessor privacy footprint, and a note on freeflow (Zach Latta) being cloud-based via Groq.
+
+### Notes
+
+- 2026-05-14 — Q&A turn: user asked "identify top five improvements to make this product better." Delivered a ranked list: (1) swap backend to `faster-whisper`/`mlx-whisper` for ~4× speedup; (2) menu-bar app with recording indicator (close UX gap vs Wispr Flow's floating mic); (3) external `~/.localflow/config.toml` so hotkey/model don't require editing `ptt.py`; (4) custom-vocabulary support via Whisper `initial_prompt` (parity with Wispr Flow Dictionary); (5) replace pbcopy+osascript⌘V dance in `ptt.py:_paste` with `pynput` direct typing to remove the 600ms clipboard-restore race. No code, config, or artifact changes — analysis only; recorded for future implementation prioritization.
+- 2026-05-14 — Q&A turn: user asked "how to launch the app locally"; answered with the three existing install/run paths from `README.md` and `install.sh`. No code, config, or artifact changes.
+- 2026-05-14 — Q&A turn: user hit the documented `osascript ... (1002)` accessibility-permission error on first launch; transcription itself worked (1.39s for "This is the test."). Walked them through identifying the parent terminal app via `ps -o comm= -p $PPID`, enabling it in System Settings → Privacy & Security → Accessibility, and the critical ⌘Q-then-relaunch step. No code, config, or artifact changes — behavior already documented in `README.md` permissions section.
+
+## [0.1.0] — 2026-04-20
+
+### Added
+
+- Initial repo at `github.com/vmysla/LocalFlow` (commit `b476dab`, 12:21 PDT).
+- `ptt.py` — push-to-talk Whisper transcription, 152 lines (created 10:48 PDT, committed in `aadd646` at 12:31 PDT).
+- `requirements.txt` — `openai-whisper`, `sounddevice`, `pynput`, `numpy`.
+- `install.sh` — one-line installer with Homebrew ffmpeg fallback.
+- `LICENSE.md` — source-available for non-commercial use.
+- `README.md` — install, permissions, and how-it-works docs (commit `3c5b35b`, 12:36 PDT).
+
+### Removed
+
